@@ -23,7 +23,8 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: diff
+  CONFIG_FILE: diffxiaoyu
+  NAME: xiaoyu
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_FIRMWARE: false
@@ -141,7 +142,7 @@ jobs:
         touch release.txt
         echo "::set-output name=status::success"
         cd ${{ env.FIRMWARE }}
-        tar -zcvf x86.tar.gz *
+        tar -zcvf ${{ env.NAME }}.tar.gz *
 
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
@@ -151,7 +152,7 @@ jobs:
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
-        files: ${{ env.FIRMWARE }}/x86.tar.gz
+        files: ${{ env.FIRMWARE }}/${{ env.NAME }}.tar.gz
 
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
@@ -163,7 +164,7 @@ jobs:
       uses: dev-drprasad/delete-older-releases@v0.1.0
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        keep_latest: 3
+        keep_latest: 4
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
