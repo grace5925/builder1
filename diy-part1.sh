@@ -18,3 +18,4 @@ echo 'src-git ssrp https://github.com/fw876/helloworld.git' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 cd package
 git clone https://github.com/grace5925/luci-app-poweroff
+git clone https://github.com/riverscn/openwrt-iptvhelper
