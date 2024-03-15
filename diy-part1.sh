@@ -19,3 +19,6 @@ echo 'src-git ssrp https://github.com/fw876/helloworld.git' >>feeds.conf.default
 cd package
 git clone https://github.com/grace5925/luci-app-poweroff
 git clone https://github.com/riverscn/openwrt-iptvhelper
+
+# Modify hostname
+sed -i 's/OpenWrt/fq5925/g' package/base-files/files/bin/config_generate
